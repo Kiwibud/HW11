@@ -65,6 +65,11 @@ def add():
         db.session.commit()
     return render_template('add.html')
 
+
+@app.route('/view')
+def view():
+    return render_template('view.html')
+
 def main():
     app.run(debug=True)
 
