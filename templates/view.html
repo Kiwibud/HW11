@@ -8,16 +8,29 @@
     <h1>Find the perfect bite</h1>
     <form method="POST">
         Category:<br>
-        <input type="text" name="category"><br>
+        <input type="text" name="category" value={{category}}><br>
         Location:<br>
-        <input type="text" name="location"><br>
+        <input type="text" name="location" value={{location}}><br>
         Price: (1 is cheap, 4 is expensive)<br>
-        <input type="number" name="price" min="1" max="4"><br><br>
+        <input type="number" name="price" value={{price}} min="1" max="4"><br><br>
       <input type="submit" value="Submit"><br><br>
     </form>
+    {% if results %}
+    <h3>We found your perfect bite!</h3>
     <table>
-
+        {% for result in results %}
+        <tr>
+            <td width=175>{{result.name}}
+            <td>{{result.location}}
+            <td>{{result.category}}
+            <td>{{'$'*result.price}}
+            </td>
+        </tr>
+        {%endfor%}
     </table>
+    {% elif category or location or price %}
+        Sorry we could not find your perfect bite :(
+    {%endif%}
     <p><a href="/home">Home</a></p>
 </body>
 </html>
