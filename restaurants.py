@@ -66,9 +66,28 @@ def add():
     return render_template('add.html')
 
 
-@app.route('/view')
+@app.route('/view', methods=["POST","GET"])
 def view():
-    return render_template('view.html')
+    results = []
+    category = ''
+    location = ''
+    max_price = ''
+    if request.method == "POST":
+        category = request.form.get('category')
+        location = request.form.get('location')
+        max_price = request.form.get('price')
+        query = Restaurant.query
+        if category:
+            query = query.filter(Restaurant.category == category)  # filter
+        if location:
+            query = query.filter(Restaurant.location == location)
+        if max_price:
+            query = query.filter(Restaurant.price <= max_price)
+        else:
+            query = query.filter(Restaurant.price <= 4)
+        results = query.all()
+    return render_template('view.html', results=results, category=category,
+                           location=location, price=max_price)
 
 def main():
     app.run(debug=True)
