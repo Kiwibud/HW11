@@ -12,25 +12,25 @@
         Location:<br>
         <input type="text" name="location" value={{location}}><br>
         Maximum Price: (1 is cheap, 4 is expensive)<br>
-        <input type="number" name="price" value={{price}} min="1" max="4"><br><br>
+        <input type="number" name="price" min="1" max="4"
+               value={{price}}><br><br>
       <input type="submit" value="Submit"><br><br>
     </form>
     {% if results %}
-    <h3>We found your perfect bite!</h3>
+    <p><b>We found your perfect bite!</b></p>
     <table>
         {% for result in results %}
         <tr>
-            <td width=175>{{result.name}}
-            <td>{{result.location}}
-            <td>{{result.category}}
-            <td>{{'$'*result.price}}
-            </td>
+            <td width="170">{{result.name}}</td>
+            <td>{{result.location}}</td>
+            <td>{{result.category}}</td>
+            <td>{{'$'*result.price}}</td>
         </tr>
-        {%endfor%}
+        {% endfor %}
     </table>
     {% elif category or location or price %}
-        Sorry we could not find your perfect bite :(
-    {%endif%}
+    <p>Sorry we could not find your perfect bite :(</p>
+    {% endif %}
     <p><a href="/home">Home</a></p>
 </body>
 </html>
