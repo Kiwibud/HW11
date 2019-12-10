@@ -5,13 +5,13 @@
     <title>The Mega Bite</title>
 </head>
 <body>
-    <h1>The Mega Bite</h1>
+<h1>The Mega Bite</h1>
     {% if results %}
     <p><b>Explore the newest additions</b></p>
     <table>
         {% for result in results %}
         <tr>
-            <td width=150>{{result.name}}</td>
+            <td width="170">{{result.name}}</td>
             <td>{{result.location}}</td>
             <td>{{result.category}}</td>
             <td>{{'$'*result.price}}</td>
